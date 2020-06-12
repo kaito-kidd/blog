@@ -28,3 +28,4 @@ date: 2016-12-20 22:55:06
 2. Twitter：https://twitter.com/sherlock_kaito
 3. 知乎：https://www.zhihu.com/people/kaito-kidd/activities
 4. 豆瓣：https://www.douban.com/people/72277492/
+5. 邮箱：silverbulletkaito(at)gmail.com
