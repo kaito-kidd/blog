@@ -1,6 +1,7 @@
 title: Python技术进阶——装饰器
 date: 2017-02-06 10:57:59
-tags: [python]
+categories: Python
+tags: [python, 装饰器]
 ---
 
 > 在Python开发中，经常会看到使用装饰器的场景，那如何正确定义和使用装饰器呢？

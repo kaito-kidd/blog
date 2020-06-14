@@ -1,5 +1,6 @@
 title: Python技术进阶——迭代器、可迭代对象、生成器
 date: 2018-04-18 11:33:10
+categories: Python
 tags: [python]
 ---
 

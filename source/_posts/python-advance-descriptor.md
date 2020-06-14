@@ -1,6 +1,7 @@
 title: Python技术进阶——描述器
 date: 2018-04-16 09:42:51
-tags: [python]
+categories: Python
+tags: [python, 装饰器]
 ---
 
 # 前言

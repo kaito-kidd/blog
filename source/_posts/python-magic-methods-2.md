@@ -1,5 +1,6 @@
 title: Python技术进阶——魔法方法（二）
 date: 2017-02-23 09:19:58
+categories: Python
 tags: [python]
 ---
 

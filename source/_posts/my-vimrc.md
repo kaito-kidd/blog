@@ -1,5 +1,6 @@
-title: "从最基础开始配置VIM"
+title: "从最基础开始配置Vim"
 date: 2015-03-11 23:39:06
+categories: 效率与工具
 tags: [vim]
 ---
 

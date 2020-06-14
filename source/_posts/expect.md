@@ -1,5 +1,6 @@
 title: "堡垒机Expect登陆服务器"
 date: 2016-04-06 22:46:48
+categories: 效率与工具
 tags: [工具, 效率, shell]
 ---
 

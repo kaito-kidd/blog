@@ -1,9 +1,10 @@
-title: "iphone6s使用感受"
+title: "iPhone6s使用感受"
 date: 2015-11-09 23:26:05
-tags: [生活]
+categories: 生活
+tags: [生活, iPhone]
 ---
 
-> 该来的总会来的，Mac、mini在手中已久，唯一差的就是iPhone了，最近被哥们刺激到后，一激动就入手了，这比预计来的要早一些。
+> 该来的总会来的，MacBook、iPad mini在手中已久，唯一差的就是iPhone了，最近被哥们刺激到后，一激动就入手了，这比预计来的要早一些。
 
 ![Iphone 6s](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/6s.png)
 

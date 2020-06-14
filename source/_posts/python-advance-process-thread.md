@@ -1,6 +1,7 @@
 title: Python技术进阶——进程和线程
 date: 2018-05-11 18:03:17
-tags: [python]
+categories: Python
+tags: [python, 进程, 线程]
 ---
 
 为了提高程序的运行效率，Python与其他语言一样，提供了多进程和多线程的开发方式，这篇文章我们来讲Python的多进程和多线程开发。

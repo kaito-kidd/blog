@@ -1,6 +1,7 @@
 title: "终于等到你，还好我没放弃！"
 date: 2016-03-15 00:32:26
-tags: [效率, 工具]
+categories: 效率与工具
+tags: [效率, 工具, 机械键盘]
 ---
 
 ![阿米洛 侧刻 红轴](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/Varmilo5.jpg "阿米洛")

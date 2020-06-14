@@ -1,6 +1,7 @@
 title: Python技术进阶——GIL
 date: 2018-04-26 13:58:55
-tags: [python]
+categories: Python
+tags: [python, GIL]
 ---
 
 在Python世界中，我们常常听到的`GIL`到底是什么？因为它的存在，对程序的执行产生什么影响？其背后的原理又是怎样的？

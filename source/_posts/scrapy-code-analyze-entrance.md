@@ -1,6 +1,7 @@
 title: "Scrapy源码分析（二）运行入口"
 date: 2016-11-09 20:35:31
-tags: [爬虫, scrapy]
+categories: 爬虫
+tags: [爬虫, scrapy, 源码分析]
 ---
 
 > 在上篇文章中：[Scrapy源码分析（一）架构概览](http://kaito-kidd.com/2016/11/01/scrapy-code-analyze-architecture/)，主要从整体介绍了Scrapy架构和数据流转，这篇文章从运行开始来分析，来看一下Scrapy是如何运行起来的。

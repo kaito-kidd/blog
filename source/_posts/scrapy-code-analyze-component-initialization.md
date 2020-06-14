@@ -1,6 +1,7 @@
 title: Scrapy源码分析（三）核心组件初始化
 date: 2016-11-21 23:30:16
-tags: [爬虫, scrapy]
+categories: 爬虫
+tags: [爬虫, scrapy, 源码分析]
 
 ---
 

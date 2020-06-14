@@ -1,5 +1,6 @@
 title: VPS搭建Shadowsocks代理服务
 date: 2017-01-11 11:12:22
+categories: 效率与工具
 tags: [shadowsocks, 代理]
 ---
 

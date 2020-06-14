@@ -1,5 +1,6 @@
 title: Python技术进阶——yield
 date: 2018-05-21 12:20:28
+categories: Python
 tags: [python]
 ---
 

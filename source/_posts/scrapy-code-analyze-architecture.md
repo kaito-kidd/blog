@@ -1,6 +1,7 @@
 title: "Scrapy源码分析（一）架构概览"
 date: 2016-11-01 20:45:56
-tags: [爬虫, scrapy]
+categories: 爬虫
+tags: [爬虫, scrapy, 源码分析]
 ---
 
 > 在爬虫领域，使用最多的主流语言主要是Java和Python这两种，而开源爬虫框架Scrapy正是由Python编写的。

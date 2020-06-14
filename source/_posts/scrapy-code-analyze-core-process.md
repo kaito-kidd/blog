@@ -1,6 +1,7 @@
 title: Scrapy源码分析（四）核心抓取流程
 date: 2016-12-07 10:30:14
-tags: [爬虫, scrapy]
+categories: 爬虫
+tags: [爬虫, scrapy, 源码分析]
 ---
 
 > 上一篇文章：[Scrapy源码分析（三）核心组件初始化](http://kaito-kidd.com/2016/11/21/scrapy-code-analyze-component-initialization/)已经分析了Scrapy核心组件的主要职责，以及它们在初始化时都完成了哪些工作。

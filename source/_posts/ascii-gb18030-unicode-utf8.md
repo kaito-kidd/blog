@@ -1,6 +1,7 @@
 title: 字符集和字符编码：ASCII、GB18030、Unicode、UTF-8
 date: 2018-05-30 16:0:35
-tags: [字符编码]
+categories: 字符编码
+tags: [编码]
 ---
 
 > 只要你是做软件开发的，就肯定听说过ASCII、Unicode、UTF-8、GBK这些字符编码，而且字符编码时刻与我们开发相关联。

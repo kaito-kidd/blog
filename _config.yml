@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Kaito
+title: Kaito's Blog
 subtitle: 致力成为一枚silver bullet.
 description: 目前就职于一家互联网公司，主要从事多机房数据库中间件的研发，实现多机房存储层的灾备与多活，主要使用Golang技术栈。追求技术，关注互联网动态。工具控、电影迷！
-author: kaito-kidd
+author: Kaito
 language: zh-CN
 timezone:
 eamil: silverbulletkaito@gmail.com

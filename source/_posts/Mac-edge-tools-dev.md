@@ -1,6 +1,7 @@
 title: "Mac效率利器（二）开发篇"
 date: 2016-09-26 22:30:50
-tags: [利器, 工具, 效率]
+categories: 效率与工具
+tags: [利器, 工具, 效率, Mac]
 ---
 
 > 上一篇文章，主要推荐了Mac上系统管理相关的效率利器：[Mac效率利器（一）系统管理篇](http://kaito-kidd.com/2016/09/13/Mac-edge-tools-system)，今天这篇文章主要推荐下Mac平台与开发相关的效率利器。

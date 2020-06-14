@@ -1,5 +1,6 @@
 title: "peewee插入数据后获取主键值"
 date: 2015-10-13 23:20:01
+categories: Python
 tags: [python, peewee]
 ---
 

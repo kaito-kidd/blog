@@ -1,5 +1,6 @@
 title: "python wkhtmltopdf使用与注意事项"
 date: 2015-03-12 00:38:06
+categories: Python
 tags: [python]
 ---
 

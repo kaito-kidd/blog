@@ -1,6 +1,7 @@
-title: "深入浅出MySQL笔记"
+title: "《深入浅出MySQL》笔记"
 date: 2015-03-10 11:56:26
-tags: [mysql]
+categories: MySQL
+tags: [图书, MySQL]
 ---
 
 ### MySQL元数据：

@@ -1,6 +1,7 @@
 title: 基于Redis实现延迟队列
 date: 2016-12-26 15:45:10
-tags: [python, redis]
+categories: Redis
+tags: [python, redis, 队列]
 ---
 
 # 背景

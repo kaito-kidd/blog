@@ -1,6 +1,7 @@
 title: "Markdown快速插入图片工具"
 date: 2016-10-19 21:53:31
-tags: [利器, 工具, 效率, alfred]
+categories: 效率与工具
+tags: [利器, 工具, 效率, Alfred, Mac]
 ---
 
 # 背景

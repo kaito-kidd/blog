@@ -1,5 +1,6 @@
 title: "vimium快捷键"
 date: 2015-03-12 00:54:02
+categories: 效率与工具
 tags: [vim]
 ---
 

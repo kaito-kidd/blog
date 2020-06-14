@@ -1,5 +1,6 @@
 title: "爬虫工具之curl"
 date: 2015-04-11 00:25:08
+categories: 爬虫
 tags: [爬虫, curl]
 ---
 
