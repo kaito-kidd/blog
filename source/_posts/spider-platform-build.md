@@ -1,7 +1,7 @@
 title: 如何构建垂直网络爬虫平台
 date: 2017-08-31 09:19:26
 categories: 爬虫
-tags: [爬虫, pyspdier, python]
+tags: [爬虫, pyspider, python]
 ---
 
 > 最近在公司做了垂直网络爬虫平台的技术分享，故整理成文章分享给大家。

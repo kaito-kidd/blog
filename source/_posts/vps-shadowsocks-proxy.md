@@ -16,7 +16,7 @@ tags: [shadowsocks, 代理]
 
 那就是在发送请求数据给代理服务时，先进行加密，这样就能跨越GFW到达代理服务，代理服务再通过同样的算法解密数据包，然后转发到我们请求的网站，之后得到响应后再通过先加密后解密的方式返回到我们本机，这样就能实现与外部连通。所以我们需要**客户端**和**服务端**配合来完成，大致流程如下：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484119054.png" width="1457" height="371" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484119054.png" />
 
 明白了原理之后，我们怎样搭建这样一个服务呢？
 
@@ -117,13 +117,13 @@ Mac和Windows平台请自行根据后缀名和日期下载最新版即可。
 
 以为Mac客户端为例，打开客户端，找到`Servers`，打开配置：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484118589.png" width="628" height="437" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484118589.png" />
 
 按照上面服务端的配置，填写IP、端口、密码、加密方式，保存。
 
 选择`Turn On`启动客户端即可：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484118706.png" width="257" height="359" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484118706.png" />
 
 试着访问google、twitter、youtube等网站，然后观察服务端的日志文件，看是否有请求进来，如果网站可以正常访问，且日志有访问记录，则说明配置正确，现在就可以愉快的科学上网了！
 
@@ -139,11 +139,11 @@ Mac和Windows平台请自行根据后缀名和日期下载最新版即可。
 
 一般配置为，先建立一个`Proxy Profile`配置，名字叫`Online Proxy`（线上服务代理），配置HTTP代理的IP和端口，例如：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484122704.png" width="857" height="190" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484122704.png" />
 
 然后建立一个`Switch Profile`配置，名字叫`Auto Switch`（自动切换），然后匹配规则如果是访问线上服务器`192.168.3.22`的服务，则自动使用上面建立的`Online Proxy`规则：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484122974.png" width="1046" height="237" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484122974.png" />
 
 而默认使用的是`Direct`，意为本机直连，也就是说，如果没有匹配到上面的规则，则默认使用直连方式进行访问，不会走任何代理。
 
@@ -192,7 +192,7 @@ var proxy = "SOCKS5 127.0.0.1:1080; SOCKS 127.0.0.1:1080; DIRECT;";
 
 那么我们就可以在`SwitchyOmega`上再建一个`Proxy Profile`规则，叫做`Global Proxy`（全局代理），使用这个代理，就强制所有的请求都通过代理访问：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125248.png" width="870" height="191" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125248.png" />
 
 配置完成后，我们在使用`Chrome`时，在地址栏的右边，就可以通过点击`SwitchyOmega`按钮来手动切换使用哪个模式进行访问了。这样既可以访问线上服务，也可以切换到代理模式访问外面世界了！
 
@@ -200,15 +200,15 @@ var proxy = "SOCKS5 127.0.0.1:1080; SOCKS 127.0.0.1:1080; DIRECT;";
 
 新建一个`PAC Profile`规则，叫做`Auto Shunt`（自动分流），配置上面的`PAC`地址：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125504.png" width="755" height="163" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125504.png" />
 
 配置完成后，切换到之前配置好的`Auto Switch`（自动切换模式）规则，把`Default`选择为刚才配置好的`Auto Shunt`模式即可，最后配置如下：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125619.png" width="1065" height="237" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125619.png" />
 
 最后选择使用`Auto Switch`模式：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125950.png" width="194" height="275" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1484125950.png" />
 
 使用如上的配置后，访问线上服务时，会走HTTP代理访问，而其他网站默认通过`PAC`规则，这个`PAC`规则会再次匹配访问网站是否为配置文件中那一系列域名网站，如果能匹配到，那么使用`SOCK 127.0.0.1`代理服务访问，否则直连访问。
 

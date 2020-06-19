@@ -20,7 +20,7 @@ tags: [爬虫, scrapy, 源码分析]
 
 因为使用比较简单，使用Scrapy官网上的例子来说明如何构建爬虫：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1477833723.png" width="618" height="318" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1477833723.png" />
 
 简单来说构建和运行一个爬虫只需完成以下几步：
 
@@ -37,7 +37,7 @@ tags: [爬虫, scrapy, 源码分析]
 
 来看一看Scrapy的架构图：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1477839561.png" width="1372" height="874" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1477839561.png" />
 
 # 核心组件
 
@@ -74,7 +74,7 @@ Scrapy有以下几大组件：
 
 我在读完源码后，整理出一个更详细的架构图，其中展示了更多相关组件的细节：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/scrapy-arch.jpg" width="1842" height="1279" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/scrapy-arch.jpg" />
 
 这里需要说明一下图中的`Scrapyer`，其实这也是在源码的一个核心类，但官方架构图中没有展示出来，这个类其实是处于`Engine`、`Spiders`、`Pipeline`之间，是连通这3个组件的桥梁，后面在文章中会具体讲解。
 
@@ -84,7 +84,7 @@ Scrapy有以下几大组件：
 
 涉及到的一些核心类如下：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/scrapy-class.jpg" width="1056" height="1457" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/scrapy-class.jpg" />
 
 其中标没有样式的**黑色文字**是类的核心**属性**，**黄色样式**的文字都是核心**方法**。
 

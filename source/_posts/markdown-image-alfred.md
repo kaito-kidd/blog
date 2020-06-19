@@ -25,9 +25,9 @@ tags: [利器, 工具, 效率, Alfred, Mac]
 
 先来看效果图：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/fast-upload-img-animation.gif" width="1188" height="490" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/fast-upload-img-animation.gif" />
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/screenshot-upload-image-animation.gif" width="1188" height="490" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/screenshot-upload-image-animation.gif" />
 
 **主要功能就是：复制本地图片或截图，快速上传图片至七牛云空间，并获取Markdown格式的图片地址。**
 

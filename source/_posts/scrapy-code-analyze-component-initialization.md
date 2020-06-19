@@ -99,7 +99,7 @@ class Spider(object_ref):
 - `start_urls`：定义种子URL；
 - `custom_settings`：从字面意思可以看出，爬虫自定义配置，会覆盖配置文件的配置项；
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242067.png" width="944" height="574" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242067.png" />
 
 # 引擎
 
@@ -133,7 +133,7 @@ class ExecutionEngine(object):
 
 在这里能看到，进行了核心组件的定义和初始化，包括：`Scheduler`、`Downloader`、`Scrapyer`，其中`Scheduler`只进行了类定义，没有实例化。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242206.png" width="1280" height="836" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242206.png" />
 
 # 调度器
 
@@ -265,7 +265,7 @@ LifoMemoryQueue = queue.LifoMemoryQueue
 
 如果你想追究这些队列是如何实现的，可以参考scrapy作者写的[scrapy/queuelib](https://github.com/scrapy/queuelib)模块。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242425.png" width="1214" height="538" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242425.png" />
 
 <!-- more -->
 
@@ -456,7 +456,7 @@ class DownloaderMiddlewareManager(MiddlewareManager):
 
 中间件的职责是什么？从这里能大概看出，从某个组件流向另一个组件时，会经过一系列中间件，每个中间件都定义了自己的处理流程，相当于一个个管道，输入时可以针对数据进行处理，然后送达到另一个组件，另一个组件处理完逻辑后，又经过这一系列中间件，这些中间件可再针对这个响应结果进行处理，最终输出。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242611.png" width="1460" height="746" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242611.png" />
 
 # Scraper
 
@@ -563,7 +563,7 @@ class ItemPipelineManager(MiddlewareManager):
 
 从`Scraper`的初始化能够看到，它管理着`Spiders`和`Pipeline`相关的交互逻辑。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242739.png" width="1436" height="440" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1482242739.png" />
 
 # 总结
 

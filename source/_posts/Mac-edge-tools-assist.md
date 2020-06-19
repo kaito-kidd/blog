@@ -12,9 +12,9 @@ tags: [利器, 工具, 效率, Mac]
 
 这个工具是我每天必用的一款辅助工具，简单来说，这个工具可以给你安装的软件定义一个快捷键，一般是以`option`为前缀。以后每次打开软件时，就可以完全脱离鼠标，使用定义好的快捷键快速启动或切换。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475938688.png" width="752" height="791" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475938688.png" />
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475938979.png" width="2539" height="462" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475938979.png" />
 
 这与之前的`command` + `tab`相比，有什么不同？
 
@@ -62,9 +62,9 @@ tags: [利器, 工具, 效率, Mac]
 
 这个工具软件除了上述功能外，还可以自动形成工作数据统计，例如展示出哪段时间内工作效率最高，某段时间内在哪件事上占用时间最多，帮助你分析你的时间都用在哪里，逐渐提高时间利用率。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475939867.png" width="986" height="503" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475939867.png" />
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475939881.png" width="951" height="360" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475939881.png" />
 
 <!-- more -->
 
@@ -78,13 +78,13 @@ tags: [利器, 工具, 效率, Mac]
 
 不管是PC端、手机端、微信、浏览器，都支持自动同步，非常方便。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475977192.png" width="1061" height="741" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475977192.png" />
 
 # Caffeine
 
 Mac默认设置是会自动睡眠的，如何方便的控制是否睡眠？安装Caffeine后，配置一次，一劳永逸。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475977337.png" width="645" height="421" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475977337.png" />
 
 # Scroll Reverser
 
@@ -92,7 +92,7 @@ Mac使用鼠标后，默认上下滚动方向是和触控板相反的，如何�
 
 这个软件很好的解决了这个问题，方便控制鼠标或触控板的滚动方向。
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475977454.png" width="494" height="346" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1475977454.png" />
 
 > 这些小工具，使用方便，操作简单，但对提升工作效率还是起了很大一部分作用，任何工具使用，都是为了提升生产力！
 

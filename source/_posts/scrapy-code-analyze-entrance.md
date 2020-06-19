@@ -171,7 +171,7 @@ def execute(argv=None, settings=None):
 ```
 主要的运行流程已经加好注释，这里我总结出了每个流程执行过程：
 
-<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1478618222.png" width="1375" height="814" />
+<img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/1478618222.png" />
 
 下面会对每个流程进行分析讲解。
 
