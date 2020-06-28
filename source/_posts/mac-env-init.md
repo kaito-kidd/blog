@@ -46,7 +46,7 @@ tags: [Mac, 效率]
 
 我们可以通过【系统偏好设置】-【辅助功能】-【指针控制】-【触控板选项】中，打开【三指拖拽】功能，打开之后只需要把三只手指同时移动，就可以实现对窗口的拖动。
 
-![打开三只拖拽功能](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/2020/06/15930790973981.png)
+![打开三指拖拽功能](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/2020/06/15930790973981.png)
 
 # 访达
 
@@ -60,8 +60,6 @@ tags: [Mac, 效率]
 
 ![显示常用文件夹](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/2020/06/15930790973990.png)
 这样在打开访达之后，就能在左侧看到这些常用的文件夹了。
-
-![显示常用文件夹](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/2020/06/15930790973996.png)
 
 ## 在文件夹下搜索
 
