@@ -49,7 +49,7 @@ Redis同样采用IO多路复用技术，但它处理请求采用是单线程模�
 
 # 数据结构
 
-Memcached支持的数据结构很单一，仅支持string普通的get/set操作。
+Memcached支持的数据结构很单一，仅支持string类型的操作。并且对于value的大小限制必须在1MB以下，过期时间不能超过30天。
 
 而Redis支持的数据结构非常丰富，除了常用的数据类型string、list、hash、set、zset之外，还可以使用geo、hyperLogLog数据类型。
 
@@ -138,7 +138,7 @@ Redis官方的集群化解决方案为Redis cluster，它采用无中心化的�
 |  #  |  Memcached  |  Redis  |
 | --- | --- | --- |
 |  线程模型  |  多线程  |  单线程  |
-|  数据结构  |  仅支持string  | string、list、hash、set、zset、geo、hyperLogLog  |
+|  数据结构  |  仅支持string、value最大1M、过期时间不能超过30天  | string、list、hash、set、zset、geo、hyperLogLog  |
 |  淘汰策略  |  LRU  | LRU、LFU、随机等多种策略   |
 |  管道与事物  |  不支持  | 支持   |
 |  持久化  | 不支持   |  支持  |
