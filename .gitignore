@@ -2,7 +2,8 @@
 Thumbs.db
 db.json
 *.log
-node_modules/
 public/
 .deploy*/
+source/_posts/media/
 .MWebMetaData/
+#node_modules/
