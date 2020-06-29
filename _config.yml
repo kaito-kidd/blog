@@ -95,7 +95,7 @@ social:
   DouBan: "http://www.douban.com/people/72277492/"
   ZhiHu: "http://www.zhihu.com/people/kaito-kidd"
 
-baidu_analytics: 8212007507f0ca24e74196a367534303
+baidu_analytics: ac0da3d41844c2dea65fd550d38fa4c1
 
 archive_generator:
   per_page: 10  #值为0表示不分页，按需填写
