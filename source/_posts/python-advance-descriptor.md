@@ -1,112 +1,256 @@
-title: Python技术进阶——描述器
+title: Python技术进阶——描述符
 date: 2018-04-16 09:42:51
 categories: Python
-tags: [python, 装饰器]
+tags: [python, 描述符]
 ---
 
-# 前言
-在Python开发中，我们很少能接触到描述器的直接使用，但对于熟练使用Python的开发者，了解Python描述器的工作原理，能让你更深入地了解Python以及其设计的优雅之处。
+在 Python 开发中，你可能听说过「描述符」这个概念，由于我们很少直接使用它，所以大部分开发人员并不了解它的原理。
 
-其实我们开发中遇到的很多例子，例如：
+但作为熟练使用 Python，想要进阶的你，建议还是了解一下描述符的原理，这也便于你更深层次地理解 Python 的设计思想。
 
-- 装饰器`property`、`staticmethod`、`classmethod`
+其实，在开发过程中，虽然我们没有直接使用到描述符，但是它在底层却无时不刻地被使用到，例如以下这些：
+
 - `function`、`bound method`、`unbound method`
+- 装饰器`property`、`staticmethod`、`classmethod`
 
-是不是都很熟悉，其实这些都与描述器有着千丝万缕的关系，这篇文章就为大家一一解答其中的奥秘。
+是不是都很熟悉？
 
-# 什么是描述器？
-一般来说，描述器是一个有**「绑定行为」**的对象属性，它的访问控制被描述器协议方法重写。
+这些都与描述符有着千丝万缕的关系，这篇文章我们就来看一下描述符背后的工作原理。
 
-回忆一下，在编程中我们说**「行为」**一般指的是方法。
+# 什么是描述符？
 
-那么这就容易理解了，**「绑定行为」**的对象属性，就是指这个**「对象属性」**依托于了另外的对象，这个对象里包含了很多「方法」来控制这个行为。
-
-
-# 描述器协议
-
-对象属性依托的对象中，包含的「方法」不能随便定义，而是规定好的，实现这些方法，就是实现了描述器协议，具体有以下几个：
-
-- `__get__`
-- `__set__`
-- `__delete__`
-
-只要实现以上方法**其一**，这个对象就叫做描述器。
-
-- 定义了`__get__`和`__set__`的对象叫做**资料描述器**
-- 只定义了`__get___`的对象叫做**非资料描述器**
-
-这两者有什么区别呢？我们下面再做解释。
-
-<!-- more -->
-
-# 描述器的调用
-
-我们来看一段描述器的代码：
+在解释什么是「描述符」之前，我们先来看一个简单的例子。
 
 ```python
-class Age(object):
-    """这个类实现了描述器协议"""
+class A:
+    x = 10
+    
+print(A.x) # 10
+```
+
+这个例子非常简单，我们在类 `A` 中定义了一个**类属性** `x`，然后打印它的值。
+
+其实，除了直接定类属性之外，我们还可以这样定义一个类属性：
+
+```python
+class Ten:
+    def __get__(self, obj, objtype=None):
+        return 10
+
+class A:
+    x = Ten()   # 属性换成了一个类
+    
+print(A.x) # 10
+```
+
+仔细看，这次类属性 `x` 不再是一个具体的值，而是一个类 `Ten`。`Ten` 中定义了一个 `__get__` 方法，返回具体的值。
+
+在 Python 中，**允许把一个类属性，托管给一个类，这个属性就是一个「描述符」。**
+
+换句话说，「描述符」是一个「绑定行为」的属性。
+
+怎么理解这句话？
+
+回忆一下，我们开发时，一般把「行为」叫做什么？是的，「行为」一般指的是一个方法。
+
+所以我们也可以把「描述符」理解为：对象的属性不再是一个具体的值，而是交给了一个方法去定义。
+
+可以想一下，如果我们用一个方法去定义一个属性，这么做的好处是什么？
+
+有了方法，我们就可以在方法内实现自己的逻辑，最简单的，我们可以根据不同的条件，在方法内给属性赋予不同的值，就像下面这样：
+
+```python
+class Age:
+    def __get__(self, obj, objtype=None):
+        if obj.name == 'zhangsan':
+            return 20
+        elif obj.name == 'lisi':
+            return 25
+        else:
+            return ValueError("unknow")
+
+class Person:
+
+    age = Age()
+
+    def __init__(self, name):
+        self.name = name
+
+p1 = Person('zhangsan')
+print(p1.age)   # 20
+
+p2 = Person('lisi')
+print(p2.age)   # 25
+
+p3 = Person('wangwu')
+print(p3.age)   # unknow
+```
+
+这个例子中，`age` 类属性被另一个类托管了，在这个类的 `__get__` 中，它会根据 `Person` 类的属性 `name`，决定 `age` 是什么值。
+
+这只是一个非常简单的例子，我们可以看到，通过描述符的使用，我们可以轻易地改变一个类属性的定义方式。
+
+# 描述符协议
+
+了解了描述符的定义，现在我们把重点放到托管属性的类上。
+
+其实，一个类属性想要托管给一个类，这个类内部实现的方法不能是随便定义的，它必须遵守「描述符协议」，也就是要实现以下几个方法：
+
+- `__get__(self, obj, type=None) -> value`
+- `__set__(self, obj, value) -> None`
+- `__delete__(self, obj) -> None`
+
+只要是实现了以上几个方法的**其中一个**，那么这个类属性就可以称作描述符。
+
+另外，描述符又可以分为「数据描述符」和「非数据描述符」：
+
+- 只定义了 `__get___`，叫做非数据描述符
+- 除了定义 `__get__` 之外，还定义了 `__set__` 或 `__delete__`，叫做数据描述符
+
+它们两者有什么区别，我会在下面详述。
+
+现在我们来看一个包含 `__get__` 和 `__set__` 方法的描述符例子：
+
+```python
+# coding: utf8
+
+class Age:
 
     def __init__(self, value=20):
         self.value = value
 
     def __get__(self, obj, type=None):
-        print 'get --> obj: %s type: %s' % (obj, type)
+        print('call __get__: obj: %s type: %s' % (obj, type))
         return self.value
 
     def __set__(self, obj, value):
-        print 'set --> obj: %s value: %s' % (obj, value)
+        if value <= 0:
+            raise ValueError("age must be greater than 0")
+        print('call __set__: obj: %s value: %s' % (obj, value))
         self.value = value
 
-class Person(object):
+class Person:
 
-    age = Age() # 这个属性通过描述器托管给了另一个类
+    age = Age()
 
     def __init__(self, name):
         self.name = name
 
-
-person = Person('zhangsan')
-
-print person.age
-# get --> obj: <__main__.Person object at 0x105e815d0> type: <class '__main__.Person'>
+p1 = Person('zhangsan')
+print(p1.age)
+# call __get__: obj: <__main__.Person object at 0x1055509e8> type: <class '__main__.Person'>
 # 20
 
-print Person.age
-# get --> obj: None type: <class '__main__.Person'>
+print(Person.age)
+# call __get__: obj: None type: <class '__main__.Person'>
 # 20
 
-person.age = 25
-# set --> obj: <__main__.Person object at 0x105e815d0> value: 25
+p1.age = 25
+# call __set__: obj: <__main__.Person object at 0x1055509e8> value: 25
 
-print person.age
-# get --> obj: <__main__.Person object at 0x105e815d0> type: <class '__main__.Person'>
+print(p1.age)
+# call __get__: obj: <__main__.Person object at 0x1055509e8> type: <class '__main__.Person'>
 # 25
+
+p1.age = -1
+# ValueError: age must be greater than 0
 ```
-我们从代码看出，`Person`类的**类属性**`age`被`Age`实现，`Age`类实现了`__set__`和`__get__`方法，对于`Person`类来说，`age`就是一个**描述器**。
 
-我们通过输出结果看出，当调用`age`属性时，都调用了`Age`的`__get__`方法，但打印出的参数结果不同：
+在这例子中，类属性 `age` 是一个描述符，它的值取决于 `Age` 类。
 
-- 当调用方是**实例**时，`obj`是`Person`实例，`type`是`type(Person)`
-- 当调用方是**类**时，`obj`是`None`，`type`是`type(Person)`
+从输出结果来看，当我们获取或修改 `age` 属性时，调用了 `Age` 的 `__get__` 和 `__set__` 方法：
 
-# 工作原理
+- 当调用 `p1.age` 时，`__get__` 被调用，参数 `obj` 是 `Person` 实例，`type` 是 `type(Person)`
+- 当调用 `Person.age` 时，`__get__` 被调用，参数 `obj` 是 `None`，`type` 是 `type(Person)`
+- 当调用 `p1.age = 25`时，`__set__` 被调用，参数 `obj` 是 `Person` 实例，`value` 是25
+- 当调用 `p1.age = -1`时，`__set__` 没有通过校验，抛出 `ValueError`
 
-这背后的机制到底是怎样的呢？
+其中，调用 `__set__` 传入的参数，我们比较容易理解，但是对于 `__get__` 方法，通过**类或实例**调用，传入的参数是不同的，这是为什么？
 
-要解释这个现象，我们要先从属性被访问的机制来说，调用`a.b`会发生什么？
+这就需要我们了解一下描述符的工作原理。
 
-如果`a`的类是继承了`object`，也就是说这个类是新式类，那么`a.b`会调用`__getattribute__`方法，如果类中没有定义这个方法，那么默认会调用`object`的`__getattribute__`方法。
+# 描述符的工作原理
 
-而`object`在`__getattribute__`中就默认调用了描述器，但调用细节取决于`a`是一个类还是一个实例：
+要解释描述符的工作原理，首先我们需要先从属性的访问说起。
 
-- 如果`a`是一个**实例**，`object`的这个方法会把其变为：
+在开发时，不知道你有没有想过这样一个问题：通常我们写这样的代码 `a.b`，其背后到底发生了什么？
+
+这里的 `a` 和 `b` 可能存在以下情况：
+
+1. `a` 可能是一个类，也可能是一个实例，我们这里统称为对象
+2. `b` 可能是一个属性，也可能是一个方法，方法其实也可以看做是类的属性
+
+其实，无论是以上哪种情况，在 Python 中，都有一个统一的调用逻辑：
+
+1. 先调用 `__getattribute__` 尝试获得结果
+2. 如果没有结果，调用 `__getattr__`
+
+用代码表示就是下面这样：
+
+```python
+def getattr_hook(obj, name):
+    try:
+        return obj.__getattribute__(name)
+    except AttributeError:
+        if not hasattr(type(obj), '__getattr__'):
+            raise
+    return type(obj).__getattr__(obj, name) 
+```
+
+我们这里需要重点关注一下 `__getattribute__`，因为它是所有属性查找的入口，它内部实现的属性查找顺序是这样的：
+
+1. 要查找的属性，在类中是否是一个描述符
+2. 如果是描述符，再检查它是否是一个数据描述符
+3. 如果是数据描述符，则调用数据描述符的 `__get__`
+4. 如果不是数据描述符，则从 `__dict__` 中查找
+5. 如果 `__dict__` 中查找不到，再看它是否是一个非数据描述符
+6. 如果是非数据描述符，则调用非数据描述符的 `__get__`
+7. 如果也不是一个非数据描述符，则从类属性中查找
+8. 如果类中也没有这个属性，抛出 `AttributeError` 异常
+
+写成代码就是下面这样：
+
+```python
+# 获取一个对象的属性
+def __getattribute__(obj, name):
+    null = object()
+    # 对象的类型 也就是实例的类
+    objtype = type(obj)
+    # 从这个类中获取指定属性
+    cls_var = getattr(objtype, name, null)
+    # 如果这个类实现了描述符协议
+    descr_get = getattr(type(cls_var), '__get__', null)
+    if descr_get is not null:
+        if (hasattr(type(cls_var), '__set__')
+            or hasattr(type(cls_var), '__delete__')):
+            # 优先从数据描述符中获取属性
+            return descr_get(cls_var, obj, objtype)
+    # 从实例中获取属性
+    if hasattr(obj, '__dict__') and name in vars(obj):
+        return vars(obj)[name]
+    # 从非数据描述符获取属性
+    if descr_get is not null:
+        return descr_get(cls_var, obj, objtype)
+    # 从类中获取属性
+    if cls_var is not null:
+        return cls_var
+    # 抛出 AttributeError 会触发调用 __getattr__
+    raise AttributeError(name)
+```
+
+如果不好理解，你最好写一个程序测试一下，观察各种情况下的属性的查找顺序。
+
+到这里我们可以看到，在一个对象中查找一个属性，都是先从 `__getattribute__` 开始的。
+
+在 `__getattribute__` 中，它会检查这个类属性是否是一个描述符，如果是一个描述符，那么就会调用它的 `__get__` 方法。但具体的调用细节和传入的参数是下面这样的：
+
+- 如果 `a` 是一个**实例**，调用细节为：
 
 ```python
 type(a).__dict__['b'].__get__(a, type(a))
 ```
 
-- 如果`a`是一个**类**，`object`的这个方法会把其变为：
+- 如果 `a` 是一个**类**，调用细节为：
 
 ```python
 a.__dict__['b'].__get__(None, a)
@@ -114,16 +258,24 @@ a.__dict__['b'].__get__(None, a)
 
 所以我们就能看到上面例子输出的结果。
 
-也就是说，描述器的调用入口，取决于`__getattribute__`！
 
-如果我们重写了`__getattribute__`，那么会阻止描述器的调用。
+# 数据描述符和非数据描述符
 
-# 方法就是描述器
+了解了描述符的工作原理，我们继续来看数据描述符和非数据描述符的区别。
 
-我们思考一个问题，当一个类中的实例变量名与一个方法同名时，例如类`A`有一个实例变量和方法都叫`foo`，那么`A().foo`会输出实例属性还是调用方法？
+从定义上来看，它们的区别是：
+
+- 只定义了 `__get___`，叫做非数据描述符
+- 除了定义 `__get__` 之外，还定义了 `__set__` 或 `__delete__`，叫做数据描述符
+
+此外，我们从上面描述符调用的顺序可以看到，在对象中查找属性时，数据描述符要优先于非数据描述符调用。
+
+在之前的例子中，我们定义了 `__get__` 和 `__set__`，所以那些类属性都是**数据描述符**。
+
+我们再来看一个**非数据描述符**的例子：
 
 ```python
-class A(object):
+class A:
 
     def __init__(self):
         self.foo = 'abc'
@@ -131,75 +283,170 @@ class A(object):
     def foo(self):
         return 'xyz'
 
-print A().foo   # abc
+print(A().foo)  # 输出什么？
 ```
 
-我们看到，`A().foo`输出了`abc`，也就是实例属性的值，而不是调用这个方法，这是怎么回事？
+这段代码，我们定义了一个相同名字的属性和方法 `foo`，如果现在执行 `A().foo`，你觉得会输出什么结果？
 
-我们执行如下代码：
+答案是 `abc`。
+
+为什么打印的是实例属性 `foo` 的值，而不是方法 `foo` 呢？
+
+这就和非数据描述符有关系了。
+
+我们执行 `dir(A.foo)`，观察结果：
 
 ```python
-print dir(A.foo)
-
-# ['__call__', '__class__', '__get__', '__delattr__', '__doc__', ...
+print(dir(A.foo))
+# [... '__get__', '__getattribute__', ...]
 ```
 
-看到了吗？`dir(A.foo)`包含了`__get__`方法，我们在上面知道描述器的定义是：只要实现了`__get__`、`__set__`、`__del__`其一，这个对象就是描述器。
+看到了吗？`A` 的 `foo` 方法其实实现了 `__get__`，我们在上面的分析已经得知：只定义 `__get__` 方法的对象，它其实是一个非数据描述符，也就是说，**我们在类中定义的方法，其实本身就是一个非数据描述符。**
 
-也就是说：**方法就是一个描述器**，而且是一个**非资料描述器**。
+所以，在一个类中，如果存在相同名字的属性和方法，按照上面所讲的 `__getattribute__` 中查找属性的顺序，这个属性就会优先从实例中获取，如果实例中不存在，才会从非数据描述符中获取，所以在这里优先查找的是实例属性 `foo` 的值。
 
-其实在调用一个属性时，具体的执行顺序是这样的：
+到这里我们可以总结一下关于描述符的相关知识点：
 
-```
-__getattribute()__ -> 资料描述器 > 实例变量 > 非资料描述器 > __getattr()__
-```
+- 描述符必须是一个类属性
+- `__getattribute__` 是查找一个属性（方法）的入口
+- `__getattribute__` 定义了一个属性（方法）的查找顺序：数据描述符、实例属性、非数据描述符、类属性
+- 如果我们重写了 `__getattribute__` 方法，会阻止描述符的调用
+- 所有方法其实都是一个非数据描述符，因为它定义了 `__get__`
 
-当一个类中的实例变量名与一个方法同名时：
+# 描述符的使用场景
 
-- 如果描述器是资料描述器，优先使用资料描述器
-- 如果描述器是非资料描述器，优先使用字典中的属性
+了解了描述符的工作原理，那描述符一般用在哪些业务场景中呢？
 
-由于每个方法都是一个非资料描述器，所以优先使用实例变量。
+在这里我用描述符实现了一个属性校验器，你可以参考这个例子，在类似的场景中去使用它。
 
-到这里我们可以总结一下：
-
-- `__getattribute__`只对新式类的实例有用
-- 描述器的调用是因为`object`的`__getattribute__`
-- 重写`__getattribute__`方法会阻止正常描述器的调用
-- 方法都是非资料描述器
-- 实例和类调用`__get__`结果不一样
-- 资料描述器 > 实例变量 > 非资料描述器调用
-
-# function/unbound method/bound method
-
-我们常见的`function`、`unbound method`、`bound method`有什么区别呢？
+首先我们定义一个校验基类 `Validator`，在 `__set__` 方法中先调用 `validate` 方法校验属性是否符合要求，然后再对属性进行赋值。
 
 ```python
-class A(object):
+class Validator:
+
+    def __init__(self):
+        self.data = {}
+
+    def __get__(self, obj, objtype=None):
+        return self.data[obj]
+
+    def __set__(self, obj, value):
+        # 校验通过后再赋值
+        self.validate(value)
+        self.data[obj] = value
+
+    def validate(self, value):
+        pass    
+```
+
+接下来，我们定义两个校验类，继承 `Validator`，然后实现自己的校验逻辑。
+
+```python
+
+class Number(Validator):
+
+    def __init__(self, minvalue=None, maxvalue=None):
+        super(Number, self).__init__()
+        self.minvalue = minvalue
+        self.maxvalue = maxvalue
+
+    def validate(self, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError(f'Expected {value!r} to be an int or float')
+        if self.minvalue is not None and value < self.minvalue:
+            raise ValueError(
+                f'Expected {value!r} to be at least {self.minvalue!r}'
+            )
+        if self.maxvalue is not None and value > self.maxvalue:
+            raise ValueError(
+                f'Expected {value!r} to be no more than {self.maxvalue!r}'
+            )
+
+class String(Validator):
+
+    def __init__(self, minsize=None, maxsize=None):
+        super(String, self).__init__()
+        self.minsize = minsize
+        self.maxsize = maxsize
+
+    def validate(self, value):
+        if not isinstance(value, str):
+            raise TypeError(f'Expected {value!r} to be an str')
+        if self.minsize is not None and len(value) < self.minsize:
+            raise ValueError(
+                f'Expected {value!r} to be no smaller than {self.minsize!r}'
+            )
+        if self.maxsize is not None and len(value) > self.maxsize:
+            raise ValueError(
+                f'Expected {value!r} to be no bigger than {self.maxsize!r}'
+            )
+```
+
+最后，我们使用这个校验类：
+
+```python
+class Person:
+
+    # 定义属性的校验规则 内部用描述符实现
+    name = String(minsize=3, maxsize=10)
+    age = Number(minvalue=1, maxvalue=120)
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# 属性符合规则
+p1 = Person('zhangsan', 20)
+print(p1.name, p1.age)
+
+# 属性不符合规则
+p2 = person('a', 20)
+# ValueError: Expected 'a' to be no smaller than 3
+p3 = Person('zhangsan', -1)
+# ValueError: Expected -1 to be at least 1
+```
+
+现在，当我们对 `Person` 实例进行初始化时，就可以校验这些属性是否符合预定义的规则了。
+
+# function与method
+
+我们再来看一下，在开发时经常看到的 `function`、`unbound method`、`bound method` 它们之间到底有什么区别？
+
+来看下面这段代码：
+
+```python
+class A:
 
     def foo(self):
         return 'xyz'
 
-print A.__dict__['foo']     # <function foo at 0x10a790d70>
-print A.foo     # <unbound method A.foo>
-print A().foo   # <bound method A.foo of <__main__.A object at 0x10a793050>>
+print(A.__dict__['foo']) # <function foo at 0x10a790d70>
+print(A.foo)     # <unbound method A.foo>
+print(A().foo)   # <bound method A.foo of <__main__.A object at 0x10a793050>>
 ```
 
-它们的区别如下：
+从结果我们可以看出它们的区别：
 
-- `function`就是一个函数，因为其实现了`__get__`，因此每个函数都是一个非资料描述器
-- 类的字典把方法当做函数存储
-- 当方法被实例调用时，返回绑定的方法（`bound method`)
-- 当方法被类调用时，返回非绑定的方法（`unbound method`）
+- `function` 准确来说就是一个函数，并且它实现了 `__get__` 方法，因此每一个 `function` 都是一个非数据描述符，而在类中会把 `function` 放到 `__dict__` 中存储
+- 当 `function` 被实例调用时，它是一个 `bound method`
+- 当 `function` 被类调用时， 它是一个 `unbound method`
+
+`function` 是一个非数据描述符，我们之前已经讲到了。
+
+而 `bound method` 和 `unbound method` 的区别就在于调用方的类型是什么，如果是一个实例，那么这个 `function` 就是一个 `bound method`，否则它是一个 `unbound method`。
 
 # property/staticmethod/classmethod
 
-Python把一些使用特别普遍的功能打包成了独立的函数，例如`property`、`staticmethod`、`classmethod`，这些方法都是基于描述器协议实现的。
+我们再来看 `property`、`staticmethod`、`classmethod`。
 
-`property`的Python版实现：
+这些装饰器的实现，默认是 C 来实现的。
+
+其实，我们也可以直接利用 Python 描述符的特性来实现这些装饰器，
+
+`property` 的 Python 版实现：
 
 ```python
-class property(object):
+class property:
 
     def __init__(self, fget=None, fset=None, fdel=None, doc=None):
         self.fget = fget
@@ -234,10 +481,10 @@ class property(object):
         return type(self)(self.fget, self.fset, fdel, self.__doc__)
 ```
 
-`staticmethod`的Python版实现：
+`staticmethod` 的 Python 版实现：
 
 ```python
-class staticmethod(object):
+class staticmethod:
 
     def __init__(self, func):
         self.func = func
@@ -246,10 +493,10 @@ class staticmethod(object):
         return self.func
 ```
 
-`classmethod`的Python版实现：
+`classmethod` 的 Python 版实现：
 
 ```python
-class classmethod(object):
+class classmethod:
 
     def __init__(self, func):
         self.func = func
@@ -262,6 +509,20 @@ class classmethod(object):
         return newfunc
 ```
 
-由此可见，通过描述符我们可以实现强大而灵活的属性和方法管理，但强大也意味着责任大，在合适的场景使用才能起到最佳的效果。
+除此之外，你还可以实现其他功能强大的装饰器。
 
+由此可见，通过描述符我们可以实现强大而灵活的属性管理功能，对于一些要求属性控制比较复杂的场景，我们可以选择用描述符来实现。
 
+# 总结
+
+这篇文章我们主要讲了 Python 描述符的工作原理。
+
+首先，我们从一个简单的例子了解到，一个类属性是可以托管给另外一个类的，这个类如果实现了描述符协议方法，那么这个类属性就是一个描述符。此外，描述符又可以分为数据描述符和非数据描述符。
+
+之后我们又分析了获取一个属性的过程，一切的入口都在 `__getattribute__` 中，这个方法定义了寻找属性的顺序，其中实例属性优先于数据描述符调用，数据描述符要优先于非数据描述符调用。
+
+另外我们又了解到，方法其实就是一个非数据描述符，如果我们在类中定义了相同名字的实例属性和方法，按照 `__getattribute__` 中的属性查找顺序，实例属性优先访问。
+
+最后我们分析了 `function` 和 `method` 的区别，以及使用 Python 描述符也可以实现 `property`、`staticmethod`、`classmethod` 装饰器。
+
+Python 描述符提供了强大的属性访问控制功能，我们可以在需要对属性进行复杂控制的场景中去使用它。
