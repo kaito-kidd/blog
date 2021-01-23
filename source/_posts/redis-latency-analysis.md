@@ -5,7 +5,7 @@ categories: Redis
 tags: [redis]
 ---
 
-> **重要提示：本篇文章写于2020年，后来内容经过迭代和完善，有了V2版本，请直接看2021年写的这篇文章：[Redis为什么变慢了？一文讲透如何排查Redis性能问题 | 万字长文](http://http://kaito-kidd.com/2021/01/23/redis-slow-latency-analysis/)。**
+> **重要提示：本篇文章写于2020年，后来内容经过迭代和完善，有了V2版本，请直接看2021年写的这篇文章：[Redis为什么变慢了？一文讲透如何排查Redis性能问题 | 万字长文](http://kaito-kidd.com/2021/01/23/redis-slow-latency-analysis/)。**
 
 Redis作为内存数据库，拥有非常高的性能，单个实例的QPS能够达到10W左右。但我们在使用Redis时，经常时不时会出现访问延迟很大的情况，如果你不知道Redis的内部实现原理，在排查问题时就会一头雾水。
 
