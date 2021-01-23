@@ -267,7 +267,7 @@ reward_settings:
 
 reward:
   wechatpay: https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/wx-qr-code.png
-  alipay: https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/alipay-qr-code.png
+  #alipay: https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/alipay-qr-code.png
   #paypal: /images/paypal.png
   #bitcoin: /images/bitcoin.png
 
@@ -276,7 +276,7 @@ reward:
 follow_me:
   #Twitter: https://twitter.com/username || fab fa-twitter
   #Telegram: https://t.me/channel_name || fab fa-telegram
-  关注「水滴与银弹」公众号，第一时间推送高质量原创文章: https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/qr_block.jpg  || fab fa-weixin
+  关注「水滴与银弹」公众号，第一时间获取高质量原创文章: https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/qr_block.jpg  || fab fa-weixin
   #RSS: /atom.xml || fa fa-rss
 
 # Related popular posts
