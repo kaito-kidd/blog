@@ -1,4 +1,4 @@
-title: Python技术进阶——装饰器
+title: Python进阶——如何实现一个装饰器？
 date: 2017-02-06 10:57:59
 categories: Python
 tags: [python, 装饰器]

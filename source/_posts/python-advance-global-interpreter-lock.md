@@ -1,4 +1,4 @@
-title: Python技术进阶——GIL
+title: Python进阶——为什么GIL让多线程变得如此鸡肋？
 date: 2018-04-26 13:58:55
 categories: Python
 tags: [python, GIL]

@@ -1,10 +1,10 @@
-title: Python技术进阶——魔法方法（二）
+title: Python进阶——如何正确使用魔法方法？（下）
 date: 2017-02-23 09:19:58
 categories: Python
 tags: [python]
 ---
 
-在上一篇文章[Python技术进阶——魔法方法（一）](http://kaito-kidd.com/2017/02/22/python-magic-methods/)中，我们主要介绍了关于构造与初始化、类的表示、访问控制这几类的魔法方法，以及它们的使用场景。
+在上一篇文章[Python进阶——如何正确使用魔法方法？（上）](http://kaito-kidd.com/2017/02/22/python-magic-methods/)中，我们主要介绍了关于构造与初始化、类的表示、访问控制这几类的魔法方法，以及它们的使用场景。
 
 这篇文章，我们继续介绍剩下的魔法方法，主要包括：比较操作、容器类操作、可调用对象、序列化。
 

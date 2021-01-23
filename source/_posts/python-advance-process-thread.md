@@ -1,4 +1,4 @@
-title: Python技术进阶——进程和线程
+title: Python技术进阶——如何正确使用进程和线程？
 date: 2018-05-11 18:03:17
 categories: Python
 tags: [python, 进程, 线程]

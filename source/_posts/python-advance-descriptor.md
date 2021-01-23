@@ -1,4 +1,4 @@
-title: Python技术进阶——描述符
+title: Python进阶——什么是描述符？
 date: 2018-04-16 09:42:51
 categories: Python
 tags: [python, 描述符]

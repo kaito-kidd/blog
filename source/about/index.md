@@ -4,7 +4,7 @@ date: 2016-12-20 22:55:06
 
 ## 关于我
 
-90后，坐标北京，6年+工作经验，就职于一家移动互联网公司，目前从事基础架构和数据库中间件研发。
+90后，坐标北京，7年资深后端研发，目前从事基础架构和数据库中间件研发。
 
 ## 技术栈
 
@@ -63,4 +63,7 @@ date: 2016-12-20 22:55:06
 4. 豆瓣：https://www.douban.com/people/72277492/
 5. 邮箱：silverbulletkaito(at)gmail.com
 6. 微信： <img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/2020/08/15970490808765.jpg" width="200" height="200">
+<center><strong>加好友请注明来源，感谢配合</strong></center>
+8. 公众号： <img src="https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/qr_block.jpg" width="200" height="200">
+<center><strong>关注「水滴与银弹」公众号，第一时间推送高质量原创文章</strong></center>
 

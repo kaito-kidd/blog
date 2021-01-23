@@ -1,4 +1,4 @@
-title: Python技术进阶——yield
+title: Python技术进阶——如何正确使用yield？
 date: 2018-05-21 12:20:28
 categories: Python
 tags: [python]
@@ -16,7 +16,7 @@ tags: [python]
 
 生成器其实就是一个特殊的迭代器，它可以像迭代器那样，迭代输出方法内的每个元素。
 
-如果你还不清楚「迭代器」是什么，可以参考我写的这篇文章：[Python技术进阶——迭代器、可迭代对象、生成器](http://kaito-kidd.com/2018/04/18/python-advance-iterator-generator/)。
+如果你还不清楚「迭代器」是什么，可以参考我写的这篇文章：[Python进阶——迭代器和可迭代对象有什么区别？](http://kaito-kidd.com/2018/04/18/python-advance-iterator-generator/)。
 
 我们来看一个包含 `yield` 关键字的方法：
 

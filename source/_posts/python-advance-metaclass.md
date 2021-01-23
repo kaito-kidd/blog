@@ -1,4 +1,4 @@
-title: Python技术进阶——元类
+title: Python进阶——什么是元类？
 date: 2018-04-19 12:34:12
 categories: Python
 tags: [python]
