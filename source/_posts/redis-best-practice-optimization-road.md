@@ -1,6 +1,6 @@
 ---
 title: Redis最佳实践：7个维度+43条使用规范，带你彻底玩转Redis | 附实践清单
-date: 2021-02-28 20:27:52
+date: 2021-03-04 10:27:52
 categories: Redis
 tags: [redis]
 ---
