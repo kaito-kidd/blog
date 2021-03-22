@@ -321,7 +321,7 @@ lazyfree-lazy-expire yes
 - volatile-lru：只淘汰最近最少访问、并设置了过期时间的 key
 - allkeys-random：不管 key 是否设置了过期，随机淘汰 key
 - volatile-random：只随机淘汰设置了过期时间的 key
-- allkeys-ttl：不管 key 是否设置了过期，淘汰即将过期的 key
+- volatile-ttl：不管 key 是否设置了过期，淘汰即将过期的 key
 - noeviction：不淘汰任何 key，实例内存达到 maxmeory 后，再写入新数据直接返回错误
 - allkeys-lfu：不管 key 是否设置了过期，淘汰访问频率最低的 key（4.0+版本支持）
 - volatile-lfu：只淘汰访问频率最低、并设置了过期时间 key（4.0+版本支持）
