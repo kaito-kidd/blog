@@ -580,7 +580,7 @@ Redis 作者对于对方提出的 fecing token 机制，也提出了质疑，主
 ```sql
 // 两个客户端必须利用事物和隔离性达到目的
 // 注意 token 的判断条件
-UPDATE table T SET val = $new_val WHERE id = $id AND current_token < $token
+UPDATE table T SET val = $new_val, current_token = $token WHERE id = $id AND current_token < $token
 ```
 
 但如果操作的不是 MySQL 呢？例如向磁盘上写一个文件，或发起一个 HTTP 请求，那这个方案就无能为力了，这对要操作的资源服务器，提出了更高的要求。
@@ -618,7 +618,7 @@ UPDATE table T SET val = $new_val WHERE id = $id AND current_token = $redlock_va
 
 而用 Martin 提到的 fecing token，因为这个 token 是单调递增的数字，资源服务器可以拒绝小的 token 请求，保证了操作的「顺序性」！
 
-Redis 对于这个问题做了不同的解释，我觉得很有道理，他解释道：**分布式锁的本质，是为了「互斥」，只要能保证两个客户端在并发时，一个成功，一个失败就好了，不需要关心「顺序性」。**
+Redis 作者对于这个问题做了不同的解释，我觉得很有道理，他解释道：**分布式锁的本质，是为了「互斥」，只要能保证两个客户端在并发时，一个成功，一个失败就好了，不需要关心「顺序性」。**
 
 > 前面 Martin 的质疑中，一直很关心这个顺序性问题，但 Redis 的作者的看法却不同。
 
@@ -708,7 +708,7 @@ Zookeeper 的优点：
 
 **第二，从我的工作经历来说**，曾经就遇到过时钟错误、运维暴力修改时钟的情况发生，进而影响了系统的正确性，所以，人为错误也是很难完全避免的。
 
-所以，我对 Redlock 的个人看法是，尽量不用它，而且它的性能不如单机版 Redis，部署成本也高，我还是会优先考虑使用单机版 Redis 实现分布式锁。
+所以，我对 Redlock 的个人看法是，尽量不用它，而且它的性能不如单机版 Redis，部署成本也高，我还是会优先考虑使用 Redis「主从+哨兵」的模式，实现分布式锁。
 
 那正确性如何保证呢？第二点给你答案。
 
