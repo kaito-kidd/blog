@@ -5,7 +5,7 @@
 # Site
 title: Kaito's Blog
 subtitle: 致力成为一枚silver bullet.
-description: 坐标北京，6年+工作经验，做过UGC后端服务，目前从事基础架构方向，主要聚焦在多机房数据库中间件的研发，实现多机房存储层的灾备与多活，主要使用Golang技术栈。追求技术，关注互联网动态。工具控、电影迷！
+description: 坐标北京，9年+工作经验，做过UGC高并发后端服务研发，目前从事基础架构&云原生方向，涉及领域包括：Redis、中间件、基础架构、异地多活、K8s、云原生。追求技术，关注互联网动态。工具控、电影迷！
 author: Kaito
 language: zh-CN
 timezone:
